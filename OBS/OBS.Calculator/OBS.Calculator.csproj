@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\ICalculateByPlayerAndYear.cs" />
     <Compile Include="Offense\OnBasePercentageCalculator.cs" />
+    <Compile Include="Offense\SluggingCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,11 +6,11 @@ using OBS.Data.Repositories;
 
 namespace OBS.Calculator.Offense
 {
-    public class OnBasePercentageCalculator : ICalculateByPlayerAndYear
+    public class SluggingCalculator : ICalculateByPlayerAndYear
     {
         private readonly IRepositoryReadByPlayer<BattingStatistic> _battingRepository;
 
-        public OnBasePercentageCalculator(IRepositoryReadByPlayer<BattingStatistic> battingRepository)
+        public SluggingCalculator(IRepositoryReadByPlayer<BattingStatistic> battingRepository)
         {
             _battingRepository = battingRepository;
         }
@@ -18,12 +18,14 @@ namespace OBS.Calculator.Offense
         public decimal Calculate(Player player, int year)
         {
             var statLine = _battingRepository.GetAllByPlayer(player)
-                                        .SingleOrDefault(stat => stat.Year == year);
-            //(H+BB+HBP)/(AB+BB+HBP+SF)
+                .SingleOrDefault(stat => stat.Year == year);
+
             var result = statLine == null
-                ? 0
-                : (Convert.ToDecimal(statLine.Hits + statLine.Walks + statLine.HitByPitch))/
-                  (Convert.ToDecimal(statLine.AtBats + statLine.Walks + statLine.HitByPitch + statLine.SacrificeFlies));
+                            ? 0
+                            : Convert.ToDecimal(statLine.Singles + (2*statLine.Doubles) + (3*statLine.Triples) +
+                                     (4*statLine.HomeRuns))
+                                    / Convert.ToDecimal(statLine.AtBats);
+
             return Decimal.Round(result, 3);
         }
     }

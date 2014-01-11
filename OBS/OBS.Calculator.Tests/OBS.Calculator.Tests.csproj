@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Offense\BaseOffenseCalculatorTests.cs" />
     <Compile Include="Offense\OnBasePercentageCalculatorTests.cs" />
+    <Compile Include="Offense\SluggingCalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

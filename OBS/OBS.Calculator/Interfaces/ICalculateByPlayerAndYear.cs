@@ -2,7 +2,7 @@
 
 namespace OBS.Calculator.Interfaces
 {
-    interface ICalculateByPlayerAndYear
+    public interface ICalculateByPlayerAndYear
     {
         decimal Calculate(Player player, int year);
     }
